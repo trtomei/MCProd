@@ -9,4 +9,4 @@
 
 ## Full gridpack production
 
-Set `test=0` in `test.sh`
+Set `test=0` in `makeGridPacks.sh` before executing `test.sh`.
