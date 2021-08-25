@@ -13,7 +13,7 @@ if [[ ! -d test ]]; then mkdir test;
 else rm -rf test/*;
 fi
 cd test
-cp ../run/gridpacks/13TeV_BB.tar.gz .
-tar -xzvf 13TeV_BB.tar.gz
+cp ../run/gridpacks/13TeV_B.tar.gz .
+tar -xzvf 13TeV_B.tar.gz
 
 ./run.sh 10000 8
