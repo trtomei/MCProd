@@ -1,7 +1,8 @@
 #!/bin/bash -x
 
-processes="BB" #B BB BBB tB tt ttB LL LLB vbf-B" #"vbf-H H"
-energies="13" #100" #TeV
+processes="B BB BBB tB tt ttB LL LLB vbf-B" #"vbf-H H"
+energies="13 100" #TeV
+test=1
 
 ##############################################
 #module load python/3.7.0
@@ -21,7 +22,7 @@ for process in $processes; do
 	sample=${E}TeV_${process}
 	if [[ -d $sample ]]; then rm -rf $sample; fi
 
-	python ${prodBase}/makeGridPacks.py $E $process
+	python ${prodBase}/makeGridPacks.py $E $process $test
 
 	date
 	python ${prodBase}/MG5_aMC_v3_1_1/bin/mg5_aMC < ${prodBase}/run/makeGridPacks.mg
@@ -37,7 +38,10 @@ for process in $processes; do
 	sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python2 ${DIR}/bin/gridrun $num_events $seed $gran%' --in-place run.sh
 	tar -czvf ${prodBase}/run/gridpacks/${sample}.tar.gz madevent run.sh
 	rm -rf madevent
+
+	if [[ $test == 1 ]]; then break; fi
     done
+    if [[ $test == 1 ]]; then break; fi
 done
 
 cd ..

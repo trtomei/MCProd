@@ -1,6 +1,7 @@
 from sys import argv
 E=int(argv[1])
 process=argv[2]
+if len(argv)>3: test=bool(argv[3])
 
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
 define j = g u c d s u~ c~ d~ s~ b b~
@@ -116,6 +117,8 @@ if __name__=='__main__':
                 f.write('generate p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
             else: 
                 f.write('add process p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
+            if test: break
+        if test: break
     f.write('output %sTeV_%s\n'%(E,process))
     f.write('launch %sTeV_%s\n'%(E,process))
     f.write('reweight=ON\n')
