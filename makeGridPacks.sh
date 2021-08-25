@@ -1,8 +1,46 @@
 #!/bin/bash -x
 
-processes="B BB BBB tB tt ttB LL LLB vbf-B" #"vbf-H H"
+processes="B BB BBB tt t tB ttB LL LLB vbf H" #vbf-B vbf-H
 energies="13 100" #TeV
 test=1
+
+processes={
+"B":
+["bos j %s"%common],
+
+"vbf":
+["bos j j %s QCD=nQCD"%common,
+"h j j %s QCD=nQCD"%common],
+
+"BB":
+["bos bos %s"%common],
+
+"BBB":
+["bos bos bos %s"%common,
+"bos h %s"%common],
+
+"tB":
+["top bos %s"%common],
+
+"t":
+["top j %s"%common],
+
+"tt":
+["top top %s"%common],
+
+"ttB":
+["top top bos %s"%common,
+"top top h %s"%common],
+
+"H":
+["h %s HIG=1 HIW=0"%common],
+
+"LL":
+["lept lept %s"%common],
+
+"LLB":
+["lept lept bos %s"%common],
+}
 
 ##############################################
 #module load python/3.7.0

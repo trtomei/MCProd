@@ -17,6 +17,7 @@ define top = t t~
 
 common='%s $ top bos h'
 
+"""
 processes={
 "B":
 ["bos j %s"%common],
@@ -60,8 +61,8 @@ processes={
 "LLB":
 ["lept lept bos %s"%common],
 }
-
 """
+
 #2013 style
 processes={
 "B":
@@ -100,7 +101,6 @@ processes={
 "LLB":
 ["lept lept bos %s"%common],
 }
-"""
 
 import os
 import subprocess
