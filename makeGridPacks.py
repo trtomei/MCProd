@@ -1,7 +1,7 @@
 from sys import argv
 E=int(argv[1])
 process=argv[2]
-if len(argv)>3: test=bool(argv[3])
+if len(argv)>3: test=bool(int(argv[3]))
 
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
 define j = g u c d s u~ c~ d~ s~ b b~
