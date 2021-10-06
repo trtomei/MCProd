@@ -10,6 +10,8 @@ else
     mgScript=$1
     if [[ $# -gt 1 ]]; then
 	delphesCard=$2
+    else
+	delphesCard="cards/gen_card.tcl"
     fi
 fi
 
