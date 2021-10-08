@@ -12,9 +12,8 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     
     #convenient
     module load emacs
-   
 else
-    which root >> \dev\null
+    which root >> /dev/null
     if [[ $? -ne 0 ]]; then
 	echo "Please ensure ROOT is available and retry"
 	exit
