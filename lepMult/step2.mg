@@ -21,12 +21,12 @@ launch step2
 madspin=on
 reweight=on
 done
-/Users/jstupak/workArea/snowmass/productionTeam/MCProd/lepMult/madspin_card_Higgs.dat
+../lepMult/madspin_card_Higgs.dat
 done
 
 launch step2
 done
-/Users/jstupak/workArea/snowmass/productionTeam/MCProd/lepMult/madspin_card_HiggsBias.dat
+../lepMult/madspin_card_HiggsBias.dat
 done
 
 #launch step2
