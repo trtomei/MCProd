@@ -1,0 +1,48 @@
+#************************************************************
+#*                        MadSpin                           *
+#*                                                          *
+#*    P. Artoisenet, R. Frederix, R. Rietkerk, O. Mattelaer * 
+#*                                                          *
+#*    Part of the MadGraph5_aMC@NLO Framework:              *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#*    Manual:                                               *
+#*    cp3.irmp.ucl.ac.be/projects/madgraph/wiki/MadSpin     *
+#*                                                          *
+#************************************************************
+#Some options (uncomment to apply)
+#
+# set seed 1
+# set Nevents_for_max_weight 75 # number of events for the estimate of the max. weight
+# set BW_cut 15                 # cut on how far the particle can be off-shell
+ set spinmode none          # Use one of the madspin special mode
+ set run_card /Users/jstupak/workArea/snowmass/productionTeam/MCProd/MG5_aMC_v3_1_1/step1/Cards/run_card.dat
+set max_weight_ps_point 400  # number of PS to estimate the maximum for each event
+
+# specify the decay for the final state particles
+# decay h > Z l+ l- , Z > l+ l-
+# decay h > Z l+ l- , Z > vl vl~
+# decay h > Z l+ l- , Z > j j
+# decay h > Z vl vl~, Z >       l+ l-
+# decay h > Z vl vl~, Z >       vl vl~
+# decay h > Z vl vl~, Z >       j j
+# decay h > Z j j   , Z >       l+ l-
+# decay h > Z j j   , Z >       vl vl~
+# decay h > Z j j   , Z >       j j
+# decay h > W- l+ vl , W- > l- vl~
+# decay h > W- l+ vl , W-       > j j
+# decay h > W- j j   , W-       > l- vl~
+# decay h > W- j j   , W- > j j
+# decay h > W+ l- vl~, W+ > l+ vl
+# decay h > W+ l- vl~, W+ > j j
+# decay h > W+ j j   , W+ > l+ vl
+# decay h > W+ j j   , W+ > j j
+# decay h > b b~
+# decay h > ta+ ta-
+
+decay  h > b b~
+decay h > ta+ ta-
+
+# running the actual code
+launch
