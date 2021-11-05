@@ -6,7 +6,8 @@ source setup.sh
 
 rm -rf MG5_aMC_v3_1_1
 bzr branch lp:~maddevelopers/mg5amcnlo/madspin_fake_br MG5_aMC_v3_1_1
-cp -r $PWD/lepMult/lepMultBias/ MG5_aMC_v3_1_1/Template/LO/Source/BIAS/lepMult
+
+cp -r lepMult/lepMultBias/ MG5_aMC_v3_1_1/Template/LO/Source/BIAS/lepMult
 
 cd MG5_aMC_v3_1_1
 rm -rf step*
