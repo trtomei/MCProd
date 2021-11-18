@@ -27,6 +27,8 @@ mkdir PDFs
 #MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v2.9.7.tar.gz
 tar -xzvf MG5_aMC_v2.9.7.tar.gz
+cp -r lepMult/lepMultBias/ MG5_aMC_v2_9_7/Template/LO/Source/BIAS/lepMult
+cp -r HT                   MG5_aMC_v2_9_7/Template/LO/Source/BIAS/HT
 #echo "install lhapdf6" | python ./MG5_aMC_v2_9_7/bin/mg5_aMC
 echo "install pythia8" | python ./MG5_aMC_v2_9_7/bin/mg5_aMC
 if [[ $? -ne 0 ]]; then
