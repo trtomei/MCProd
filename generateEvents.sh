@@ -39,6 +39,6 @@ for gz in $gzs; do
     n=`grep -c \<event\> $lhe`
     echo $n
     sed s%examples/Pythia8/events.lhe%$lhe% examples/Pythia8/configLHE.cmnd > configLHE.cmnd #this will create a new config pointing to your lhe
-    sed "s%Main:numberOfEvents = 10%Main:numberOfEvents = $n%" --in-place configLHE.cmnd
+    sed -in-place "s%Main:numberOfEvents = 10%Main:numberOfEvents = $n%" configLHE.cmnd
     ./DelphesPythia8 $delphesCard configLHE.cmnd $output  #this runs delphes using your new config
 done
