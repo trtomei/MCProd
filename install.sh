@@ -4,8 +4,10 @@ baseDir=$PWD
 source setup.sh
 
 #MadGraph
-wget https://launchpad.net/mg5amcnlo/3.0/3.1.x/+download/MG5_aMC_v3.1.1.tar.gz
-tar -xzvf MG5_aMC_v3.1.1.tar.gz
+#wget https://launchpad.net/mg5amcnlo/3.0/3.1.x/+download/MG5_aMC_v3.1.1.tar.gz
+#tar -xzvf MG5_aMC_v3.1.1.tar.gz
+bzr branch lp:~maddevelopers/mg5amcnlo/madspin_fake_br MG5_aMC_v3_1_1
+cp -r lepMult/lepMultBias/ MG5_aMC_v3_1_1/Template/LO/Source/BIAS/lepMult
 if [[ $? -ne 0 ]]; then
     echo "ERROR getting madgraph"
     exit
@@ -36,5 +38,3 @@ if [[ $? -ne 0 ]]; then
     echo "ERROR compiling delphes"
     exit
 fi
-
-#echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${baseDir}/lib" >> ~/.bash_profile

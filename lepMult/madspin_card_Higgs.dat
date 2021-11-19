@@ -29,7 +29,7 @@
 #decay z > all all
 define f = b b~  ta+ ta-
 define opt_f = f _
-decay h > f f opt_f opt_f
+decay h > f f 
 #decay h > z z           , z  > all all
 #decay h > w+ w-         , w+ > all all , w- > all all
 #decay h > ta+ ta-
