@@ -20,6 +20,6 @@
     source setup.sh
     ./generateEvents.sh <mg script> [delphes card]
 where `<mg script>` contains a list of madgraph commands, and `[delphes card]` is an optional argument specifying which Delphes card to run.  For example:
-    ./generateEvents.sh $PWD/test.mg $PWD/delphes/cards/delphes_card_FCCeh.tcl
 
+    ./generateEvents.sh $PWD/test.mg $PWD/delphes/cards/FCC/FCChh.tcl
       
