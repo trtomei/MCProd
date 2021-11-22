@@ -20,7 +20,7 @@ rm MG5_aMC_v3.1.1.tar.gz
 wget https://pythia.org/download/pythia83/pythia8306.tgz
 tar -xzvf pythia8306.tgz
 cd pythia8306
-./configure --prefix=$prodBase --with-hepmc2=$prodBase
+./configure --prefix=$prodBase --with-hepmc2=$prodBase --with-gzip
 make -j
 make install
 if [[ $? -ne 0 ]]; then
