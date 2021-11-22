@@ -1,6 +1,6 @@
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
-source $prodBase/setup.sh
+#source $prodBase/setup.sh
 
 if [[ ! -d run ]]; then mkdir run;
 else rm -rf run/*;

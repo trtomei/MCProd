@@ -4,7 +4,7 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 if [[ $# < 1 ]]; 
 then 
     echo "Usage: ./generateEvents.sh <mg script> [delphes card]"
-    echo "Example: ./generateEvents.sh $PWD/foo $PWD/delphes/cards/gen_card.tcl"
+    echo "Example: ./generateEvents.sh $PWD/test.mg $PWD/delphes/cards/gen_card.tcl"
     exit
 else
     mgScript=$1
@@ -33,13 +33,20 @@ cd ..
 cd delphes
 for gz in $gzs; do 
     lhe=${gz%%.gz}
-    output=${lhe%%.lhe}.root  #set delphes output path/name
-
+    pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
+    delphesOutput=${lhe%%.lhe}.root  #set delphes output path/name
+    
+    
     gunzip $gz
     #n=`grep -c \<event\> $lhe`
     #echo $n
     #sed s%examples/Pythia8/events.lhe%$lhe% examples/Pythia8/configLHE.cmnd > configLHE.cmnd #this will create a new config pointing to your lhe
     ###sed "s%Main:numberOfEvents = 10%Main:numberOfEvents = $n%" --in-place configLHE.cmnd
-    #./DelphesPythia8 $delphesCard configLHE.cmnd $output  #this runs delphes using your new config
-    ./DelphesLHEF $delphesCard $output $lhe
+    #./DelphesPythia8 $delphesCard configLHE.cmnd $delphesOutput  #this runs delphes using your new config
+    ./DelphesLHEF $delphesCard $delphesOutput $lhe
+
+    cd `dirname $lhe`
+    rivet --analysis=MC_GENERIC $pythiaOutput
+    rivet-mkhtml Rivet.yoda
+
 done

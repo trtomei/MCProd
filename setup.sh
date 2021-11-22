@@ -1,15 +1,18 @@
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${PWD}/lib
 export prodBase=$PWD
 
-if [[ -e rivetenv.sh ]]; then source rivetenv.sh; fi
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib:${prodBase}/MG5_aMC_v3_1_1/HEPTools/lhapdf6_py3/lib
+export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux:$PATH
+
+#if [[ -e rivetenv.sh ]]; then source rivetenv.sh; fi
 
 if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     #important
     module load python/2.7.15
     module load py-numpy/1.15.2-py2.7
-    module load py-six/1.11.0-py2.7
+    #module load py-six/1.11.0-py2.7
     #. /cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.22.08/x86_64-centos7-gcc48-opt/bin/thisroot.sh
     source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
     
