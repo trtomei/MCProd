@@ -15,7 +15,7 @@ else
     fi
 fi
 
-source setup.sh
+#source setup.sh
 
 touch dummy
 
@@ -36,9 +36,10 @@ for gz in $gzs; do
     output=${lhe%%.lhe}.root  #set delphes output path/name
 
     gunzip $gz
-    n=`grep -c \<event\> $lhe`
-    echo $n
-    sed s%examples/Pythia8/events.lhe%$lhe% examples/Pythia8/configLHE.cmnd > configLHE.cmnd #this will create a new config pointing to your lhe
-    sed "s%Main:numberOfEvents = 10%Main:numberOfEvents = $n%" --in-place configLHE.cmnd
-    ./DelphesPythia8 $delphesCard configLHE.cmnd $output  #this runs delphes using your new config
+    #n=`grep -c \<event\> $lhe`
+    #echo $n
+    #sed s%examples/Pythia8/events.lhe%$lhe% examples/Pythia8/configLHE.cmnd > configLHE.cmnd #this will create a new config pointing to your lhe
+    ###sed "s%Main:numberOfEvents = 10%Main:numberOfEvents = $n%" --in-place configLHE.cmnd
+    #./DelphesPythia8 $delphesCard configLHE.cmnd $output  #this runs delphes using your new config
+    ./DelphesLHEF $delphesCard $output $lhe
 done

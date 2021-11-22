@@ -2,7 +2,15 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 
 source setup.sh
 
+#Rivet dependencies
 python3 -m pip install python-dev-tools --user --upgrade
+wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/ghostscript-9.55.0.tar.gz
+tar -xzvf ghostscript-9.55.0.tar.gz 
+cd ghostscript-9.55.0/
+./configure --prefix=$prodBase
+make 
+make install
+cd ..
 
 #Rivet
 wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
@@ -12,7 +20,7 @@ if [[ $? -ne 0 ]]; then
     echo "ERROR installing rivet"
     exit
 fi
-source rivet-env.sh
+source rivetenv.sh
 
 #MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.1.x/+download/MG5_aMC_v3.1.1.tar.gz
@@ -39,8 +47,8 @@ rm MG5_aMC_v3.1.1.tar.gz
 # cd ..
 
 #Delphes
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib    
-export PYTHIA8=$prodBase
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib    
+#export PYTHIA8=$prodBase
 git clone https://github.com/delphes/delphes.git
 cd delphes
 make -j #HAS_PYTHIA8=true -I${prodBase}/include/Pythia8
