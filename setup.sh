@@ -3,6 +3,8 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${PWD}/lib
 export prodBase=$PWD
 
+source rivet-env.sh
+
 if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     #important
     module load python/2.7.15

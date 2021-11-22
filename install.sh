@@ -2,10 +2,17 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 
 source setup.sh
 
+python3 -m pip install python-dev-tools --user --upgrade
+
 #Rivet
 wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
 chmod +x rivet-bootstrap
 INSTALL_PREFIX=$prodBase ./rivet-bootstrap
+if [[ $? -ne 0 ]]; then
+    echo "ERROR installing rivet"
+    exit
+fi
+source rivet-env.sh
 
 #MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.1.x/+download/MG5_aMC_v3.1.1.tar.gz
@@ -41,3 +48,4 @@ if [[ $? -ne 0 ]]; then
     echo "ERROR compiling delphes"
     exit
 fi
+cd ..
