@@ -2,9 +2,9 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 
 export prodBase=$PWD
 
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib:${prodBase}/MG5_aMC_v3_1_1/HEPTools/lhapdf6_py3/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib #:${prodBase}/MG5_aMC_v3_1_1/HEPTools/lhapdf6_py3/lib
 export PATH=/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux:$PATH
+export lhapdf=$prodBase/MG5_aMC_v3_1_1/HEPTools/bin/lhapdf-config
 
 #if [[ -e rivetenv.sh ]]; then source rivetenv.sh; fi
 
