@@ -23,14 +23,14 @@ fi
 source rivetenv.sh
 
 #MadGraph
-wget https://launchpad.net/mg5amcnlo/3.0/3.1.x/+download/MG5_aMC_v3.1.1.tar.gz
-tar -xzvf MG5_aMC_v3.1.1.tar.gz
+https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v2.9.7.tar.gz
+tar -xzvf MG5_aMC_v2.9.7.tar.gz
 echo "install pythia8" | python ./MG5_aMC_v3_1_1/bin/mg5_aMC
 if [[ $? -ne 0 ]]; then
     echo "ERROR getting madgraph"
     exit
 fi
-rm MG5_aMC_v3.1.1.tar.gz
+rm MG5_aMC_v2.9.7.tar.gz
 
 #Pythia
 # wget https://pythia.org/download/pythia83/pythia8306.tgz
