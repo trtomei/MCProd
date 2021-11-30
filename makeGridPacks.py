@@ -1,6 +1,7 @@
 from sys import argv
 E=int(argv[1])
 process=argv[2]
+sample="%iTeV_%s"%(E,process)
 if len(argv)>3: test=bool(int(argv[3]))
 
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
@@ -104,7 +105,7 @@ processes={
 
 import os
 import subprocess
-f=file('makeGridPacks.mg','w')
+f=open(sample+'.mg','w')
 if __name__=='__main__':
     f.write(definitions+'\n')
     command=processes[process]

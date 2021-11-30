@@ -6,7 +6,7 @@ if [[ ! -d run ]]; then mkdir run;
 else rm -rf run/*;
 fi
 cd run
-../makeGridPacks.sh
+../makeGridPacks.sh 1
 cd ..
 
 if [[ ! -d test ]]; then mkdir test;
