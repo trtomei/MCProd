@@ -1,9 +1,15 @@
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
-source setup.sh
+#root
+#wget https://root.cern/download/root_v6.24.06.source.tar.gz
+#tar -xzvf root_v6.24.06.source.tar.gz
+#mkdir build
+#cd build
+#cmake -DCMAKE_INSTALL_PREFIX=$prodBase -DCMAKE_CXX_STANDARD=14 ../root-6.24.06/
+#cmake --build . --target install -- -j8
 
 #Rivet dependencies
-python -m pip install python-dev-tools --user --upgrade
+python3 -m pip install python-dev-tools --user --upgrade
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing python-dev-tools"
     exit
@@ -12,7 +18,7 @@ wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9
 tar -xzvf ghostscript-9.55.0.tar.gz 
 cd ghostscript-9.55.0/
 ./configure --prefix=$prodBase
-make 
+make -j8
 make install
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing ghostscript"
@@ -59,7 +65,7 @@ rm MG5_aMC_v2.9.7.tar.gz
 #export PYTHIA8=$prodBase
 git clone https://github.com/delphes/delphes.git
 cd delphes
-make -j #HAS_PYTHIA8=true -I${prodBase}/include/Pythia8
+make -j8 #HAS_PYTHIA8=true -I${prodBase}/include/Pythia8
 if [[ $? -ne 0 ]]; then
     echo "ERROR compiling delphes"
     exit

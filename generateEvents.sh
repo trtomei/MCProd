@@ -29,6 +29,7 @@ echo $gzs
 cd ..
 
 #------------------------------------------------------------------------
+source rivetenv.sh
 
 cd delphes
 for gz in $gzs; do 

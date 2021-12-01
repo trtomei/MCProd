@@ -4,15 +4,19 @@ export prodBase=$PWD
 
 if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     module purge
-    #important
 
-    #module load python/2.7.15
-    #module load py-numpy/1.15.2-py2.7
-    module load python/3.7.0
-    module load py-numpy/1.15.2-py3.7
+    module load python/2.7.15
+    module load py-numpy/1.15.2-py2.7
     #module load py-six/1.11.0-py2.7
+    #module load python/3.7.0
+    #module load py-numpy/1.15.2-py3.7
+
+    #module load cmake
+    
+    source /cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.24.06/x86_64-fedora32-gcc102-opt/bin/thisroot.sh
+    #. /cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.24.06/x86_64-fedora32-gcc102-opt/bin/thisroot.sh
     #. /cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.22.08/x86_64-centos7-gcc48-opt/bin/thisroot.sh  #original
-    source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh  #for rivet
+    #source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh  #for rivet
     #.     /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.08/x86_64-centos7-gcc48-opt/ROOT-env.sh
     
     #convenient
