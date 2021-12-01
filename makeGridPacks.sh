@@ -24,7 +24,7 @@ for process in $processes; do
 	python ${prodBase}/makeGridPacks.py $E $process $test
 
 	date
-	python ${prodBase}/MG5_aMC_v3_1_1/bin/mg5_aMC < ${prodBase}/run/${sample}.mg
+	python ${prodBase}/MG5_aMC_v2_9_7/bin/mg5_aMC < ${prodBase}/run/${sample}.mg
 	date
 
 	tar -xzvf $sample/run_01_gridpack.tar.gz

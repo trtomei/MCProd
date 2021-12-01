@@ -3,7 +3,7 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 source setup.sh
 
 #Rivet dependencies
-python3 -m pip install python-dev-tools --user --upgrade
+python -m pip install python-dev-tools --user --upgrade
 wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/ghostscript-9.55.0.tar.gz
 tar -xzvf ghostscript-9.55.0.tar.gz 
 cd ghostscript-9.55.0/
