@@ -4,12 +4,20 @@ source setup.sh
 
 #Rivet dependencies
 python -m pip install python-dev-tools --user --upgrade
+if [[ $? -ne 0 ]]; then
+    echo "ERROR installing python-dev-tools"
+    exit
+fi
 wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/ghostscript-9.55.0.tar.gz
 tar -xzvf ghostscript-9.55.0.tar.gz 
 cd ghostscript-9.55.0/
 ./configure --prefix=$prodBase
 make 
 make install
+if [[ $? -ne 0 ]]; then
+    echo "ERROR installing ghostscript"
+    exit
+fi
 cd ..
 
 #Rivet
