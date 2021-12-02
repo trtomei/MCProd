@@ -31,7 +31,9 @@ else
 fi
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib #:${prodBase}/MG5_aMC_v2_9_7/HEPTools/lhapdf6_py3/lib                             
-export PATH=$PATH:/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux
-export lhapdf=$prodBase/MG5_aMC_v2_9_7/HEPTools/bin/lhapdf-config
+export PATH=$PATH:${prodBase}/bin:/cvmfs/sft.cern.ch/lcg/external/texlive/2016/bin/x86_64-linux
+export PYTHONPATH=$PYTHONPATH:$PWD/lib/python2.7/site-packages
+#export lhapdf=$prodBase/MG5_aMC_v2_9_7/HEPTools/bin/lhapdf-config
+export lhapdf=$prodBase/bin/lhapdf-config
 
 #if [[ -e rivetenv.sh ]]; then source rivetenv.sh; fi

@@ -8,9 +8,21 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 #cmake -DCMAKE_INSTALL_PREFIX=$prodBase -DCMAKE_CXX_STANDARD=14 ../root-6.24.06/
 #cmake --build . --target install -- -j8
 
-#MadGraph                                                                                                                                  
+#LHAPDF
+wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.0.tar.gz
+tar -xzvf LHAPDF-6.4.0.tar.gz 
+cd LHAPDF-6.4.0
+./configure --prefix=$prodBase
+make
+make install
+
+mkdir PDFs
+./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
+
+#MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v2.9.7.tar.gz
 tar -xzvf MG5_aMC_v2.9.7.tar.gz
+echo "install lhapdf6" | python ./MG5_aMC_v2_9_7/bin/mg5_aMC
 echo "install pythia8" | python ./MG5_aMC_v2_9_7/bin/mg5_aMC
 if [[ $? -ne 0 ]]; then
     echo "ERROR getting madgraph"
