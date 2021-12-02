@@ -48,10 +48,12 @@ if [[ $? -ne 0 ]]; then
 fi
 cd ..
 
+#Needed for rivet (and delphes?)
+source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
+
 #Rivet
 wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
 chmod +x rivet-bootstrap
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
 INSTALL_PREFIX=$prodBase ./rivet-bootstrap
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing rivet"

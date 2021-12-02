@@ -30,6 +30,7 @@ cd ..
 
 #------------------------------------------------------------------------
 source rivetenv.sh
+source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
 
 cd delphes
 for gz in $gzs; do 
