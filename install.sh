@@ -54,7 +54,7 @@ source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10
 #Rivet
 wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
 chmod +x rivet-bootstrap
-INSTALL_PREFIX=$prodBase ./rivet-bootstrap
+INSTALL_PREFIX=$prodBase MAKE="make -j8" ./rivet-bootstrap
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing rivet"
     exit
