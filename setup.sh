@@ -7,7 +7,8 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
 
     module load python/2.7.15
     module load py-numpy/1.15.2-py2.7
-    #module load py-six/1.11.0-py2.7
+    module load py-six/1.11.0-py2.7
+    
     #module load python/3.7.0
     #module load py-numpy/1.15.2-py3.7
 
