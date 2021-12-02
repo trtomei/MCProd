@@ -16,4 +16,5 @@ cd test
 cp ../run/gridpacks/13TeV_B.tar.gz .
 tar -xzvf 13TeV_B.tar.gz
 
+sed 's%${DIR}/bin/gridrun $num_events $seed $gran%python ${DIR}/bin/gridrun $num_events $seed $gran%' run.sh --in-place
 ./run.sh 10000 8
