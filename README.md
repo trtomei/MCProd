@@ -9,13 +9,13 @@
 ## Produce a single gridpack without extra partons at ME-level (quick test)
 
     source setup.sh
-    ./test.sh 1
+    ./testGridpacks.sh
 
 ## Produce all gridpacks
     source setup.sh
-    ./test.sh 0
+    ./makeGridPacks.sh
 
-## Produce events (no gridpack)
+## Produce events (no gridpack) and run Rivet
 
     source setup.sh
     ./generateEvents.sh <mg script> [delphes card]
