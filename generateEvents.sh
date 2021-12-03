@@ -17,27 +17,21 @@ fi
 
 #source setup.sh
 
-touch dummy
+touch .dummy
 
 #########################################################################
 
-cd MG5_aMC_v2_9_7
-python ./bin/mg5_aMC < "${mgScript}"
-gzs=`find . -newer ../dummy -name "unweighted_events.lhe.gz" -exec echo $PWD/{} \;`
+#cd MG5_aMC_v2_9_7
+python MG5_aMC_v2_9_7/bin/mg5_aMC < "${mgScript}"
+gzs=`find . -newer .dummy -name "unweighted_events.lhe.gz" -exec echo $PWD/{} \;`
 echo $gzs
 
-cd ..
-
 #------------------------------------------------------------------------
-source rivetenv.sh
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
-
 cd delphes
 for gz in $gzs; do 
     lhe=${gz%%.gz}
     pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
     delphesOutput=${lhe%%.lhe}.root  #set delphes output path/name
-    
     
     gunzip $gz
     #n=`grep -c \<event\> $lhe`
@@ -47,8 +41,18 @@ for gz in $gzs; do
     #./DelphesPythia8 $delphesCard configLHE.cmnd $delphesOutput  #this runs delphes using your new config
     ./DelphesLHEF $delphesCard $delphesOutput $lhe
 
+done
+
+#------------------------------------------------------------------------
+source $prodBase/rivetenv.sh
+source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
+#------------------------------------------------------------------------
+
+for gz in $gzs; do
+    lhe=${gz%%.gz}
+    pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
+
     cd `dirname $lhe`
     rivet --analysis=MC_GENERIC $pythiaOutput
     rivet-mkhtml Rivet.yoda
-
 done

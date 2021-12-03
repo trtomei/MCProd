@@ -1,3 +1,4 @@
+set lhapdf_py2 /tank/scratch/jstupak/dev/MCProd/bin/lhapdf-config
 generate p p > Z
 add process p p > Z g
 output
