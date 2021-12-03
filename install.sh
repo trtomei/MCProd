@@ -13,8 +13,13 @@ wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.
 tar -xzvf LHAPDF-6.4.0.tar.gz 
 cd LHAPDF-6.4.0
 ./configure --prefix=$prodBase
-make
+make -j8
 make install
+if [[ $? -ne 0 ]]; then
+    echo "ERROR installing LHAPDF"
+    exit
+fi
+cd ..
 
 mkdir PDFs
 ./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
@@ -28,7 +33,6 @@ if [[ $? -ne 0 ]]; then
     echo "ERROR getting madgraph"
     exit
 fi
-rm MG5_aMC_v2.9.7.tar.gz
 
 #Delphes
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib
