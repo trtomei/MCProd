@@ -40,6 +40,7 @@ output step1
 launch step1
 reweight=on
 done
+set iseed 1
 done
 
 launch step1
