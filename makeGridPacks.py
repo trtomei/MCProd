@@ -4,7 +4,7 @@ process=argv[2]
 sample="%iTeV_%s"%(E,process)
 if len(argv)>3: test=bool(int(argv[3]))
 
-from os import environ
+import os
 
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
 define j = g u c d s u~ c~ d~ s~ b b~
@@ -105,11 +105,27 @@ processes={
 ["lept lept bos %s"%common],
 }
 
+xqcut={
+    'B':40,
+    'vbf':40,
+    'BB':40,
+    'BBB':40,
+    'tB':60,
+    't':60,
+    'tt':80,
+    'ttB':80,
+    'H':40,
+    'LL':40,
+    'LLB':40
+}
+
 import os
 import subprocess
 f=open(sample+'.mg','w')
 if __name__=='__main__':
     f.write(definitions+'\n')
+    f.write('set lhapdf_py2 %s/bin/lhapdf-config\n'%os.environ['prodBase'])
+    
     command=processes[process]
     n=len(command[0].split('%')[0].split())
 
@@ -122,16 +138,22 @@ if __name__=='__main__':
                 f.write('add process p p > '+command[i].replace('nQCD',str(j))%('j '*j)+'\n')
             if test: break
         if test: break
+
     f.write('output %sTeV_%s\n'%(E,process))
     f.write('launch %sTeV_%s\n'%(E,process))
+    #f.write('shower = Pythia8\n')
     f.write('reweight=ON\n')
     #f.write('madspin=ON\n')  #causes crash
     f.write('done\n')
-    f.write(os.environ['prodBase']+'/Cards/param_card.dat\n')  
+    #f.write(os.environ['prodBase']+'/Cards/param_card.dat\n')
+    f.write('%s/Cards/run_card.dat\n'%os.environ['prodBase'])
+    f.write('%s/Cards/pythia8_card.dat\n'%os.environ['prodBase'])
+    if process in ['t','tB','vbf']:
+        f.write('set auto_ptj_mjj False\n')
     f.write('set gridpack = .true.\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))
-    f.write('set lhaid 260000')
+    f.write('set xqcut %i\n'%xqcut[process])
     f.write('done\n')
     f.write('\n')
 
