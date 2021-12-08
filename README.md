@@ -3,6 +3,7 @@
 ## Installation and setup
     git clone https://github.com/Snowmass21-software/MCProd.git -b gridpacks
     cd MCProd/
+    source setup.sh
     ./install.sh
 
 

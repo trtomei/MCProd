@@ -9,7 +9,7 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 #cmake --build . --target install -- -j8
 
 #LHAPDF
-wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.0.tar.gz
+wget --no-check-certificate https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.0.tar.gz
 tar -xzvf LHAPDF-6.4.0.tar.gz 
 cd LHAPDF-6.4.0
 ./configure --prefix=$prodBase

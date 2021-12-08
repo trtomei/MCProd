@@ -23,6 +23,9 @@ if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     #convenient
     module load emacs
 else
+    # Try to load a consistent version of ROOT, python, numpy and six such that we do not go mad
+    source /cvmfs/sft.cern.ch/lcg/releases/LCG_99python2/ROOT/v6.22.06/x86_64-centos7-gcc8-opt/ROOT-env.sh
+    # This *should* load ROOT v6.22.06, Python 2.7.16, numpy 1.16.4 and six 1.12.0
     which root >> /dev/null
     if [[ $? -ne 0 ]]; then
 	echo "Please ensure ROOT is available and retry"
