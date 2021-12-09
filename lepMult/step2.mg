@@ -22,6 +22,7 @@ madspin=on
 reweight=on
 done
 ../lepMult/madspin_card_Higgs.dat
+set iseed 1
 done
 
 launch step2

@@ -1,7 +1,10 @@
 from sys import argv
 E=int(argv[1])
 process=argv[2]
+sample="%iTeV_%s"%(E,process)
 if len(argv)>3: test=bool(int(argv[3]))
+
+from os import environ
 
 definitions="""define p = g u c d s u~ c~ d~ s~ b b~
 define j = g u c d s u~ c~ d~ s~ b b~
@@ -104,7 +107,7 @@ processes={
 
 import os
 import subprocess
-f=file('makeGridPacks.mg','w')
+f=open(sample+'.mg','w')
 if __name__=='__main__':
     f.write(definitions+'\n')
     command=processes[process]
@@ -128,6 +131,7 @@ if __name__=='__main__':
     f.write('set gridpack = .true.\n')
     f.write('set ebeam1 = %i\n'%(1000*E/2))
     f.write('set ebeam2 = %i\n'%(1000*E/2))
+    f.write('set lhaid 260000')
     f.write('done\n')
     f.write('\n')
 
