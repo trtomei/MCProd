@@ -25,19 +25,25 @@ mkdir PDFs
 ./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
 
 #MadGraph
-wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v2.9.7.tar.gz
-tar -xzvf MG5_aMC_v2.9.7.tar.gz
-#echo "install lhapdf6" | python ./MG5_aMC_v2_9_7/bin/mg5_aMC
-echo "install pythia8" | python ./MG5_aMC_v2_9_7/bin/mg5_aMC
+wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v3.3.1.tar.gz
+tar -xzvf MG5_aMC_v3.3.1.tar.gz
+#echo "install lhapdf6" | python ./MG5_aMC_v3_3_1/bin/mg5_aMC
+#echo "install pythia8" | python ./MG5_aMC_v3_3_1/bin/mg5_aMC
 if [[ $? -ne 0 ]]; then
     echo "ERROR getting madgraph"
     exit
 fi
-rm MG5_aMC_v3.1.1.tar.gz
+rm MG5_aMC_v3.3.1.tar.gz
 
 #Pythia
-wget https://pythia.org/download/pythia83/pythia8306.tgz
-tar -xzvf pythia8306.tgz
+#wget https://pythia.org/download/pythia83/pythia8306.tgz
+#tar -xzvf pythia8306.tgz
+####################################################################
+#hack while pythia site is down
+cp /home/meloam/snowmass-ef-mc-submitter/demo/pythia8305.tgz .
+tar -xzvf pythia8305.tgz
+mv pythia8305 pythia8306
+####################################################################
 cd pythia8306
 ./configure --prefix=$prodBase --with-hepmc2=$prodBase --with-gzip
 make -j

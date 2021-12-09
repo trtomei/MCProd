@@ -4,12 +4,12 @@ if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit;
 
 #source setup.sh
 
-#rm -rf MG5_aMC_v2_9_7
-#bzr branch lp:~maddevelopers/mg5amcnlo/madspin_fake_br MG5_aMC_v2_9_7
+#rm -rf MG5_aMC_v3_3_1
+#bzr branch lp:~maddevelopers/mg5amcnlo/madspin_fake_br MG5_aMC_v3_3_1
 
-cp -r lepMult/lepMultBias/ MG5_aMC_v2_9_7/Template/LO/Source/BIAS/lepMult
+cp -r lepMult/lepMultBias/ MG5_aMC_v3_3_1/Template/LO/Source/BIAS/lepMult
 
-cd MG5_aMC_v2_9_7
+cd MG5_aMC_v3_3_1
 rm -rf step*
 
 python ./bin/mg5_aMC < ../lepMult/step1.mg

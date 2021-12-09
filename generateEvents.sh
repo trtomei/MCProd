@@ -21,8 +21,8 @@ touch .dummy
 
 #########################################################################
 
-#cd MG5_aMC_v2_9_7
-python MG5_aMC_v2_9_7/bin/mg5_aMC < "${mgScript}"
+#cd MG5_aMC_v3_3_1
+python MG5_aMC_v3_3_1/bin/mg5_aMC < "${mgScript}"
 gzs=`find . -newer .dummy -name "unweighted_events.lhe.gz" -exec echo $PWD/{} \;`
 echo $gzs
 
