@@ -9,4 +9,5 @@ done
 Cards/run_card.dat
 #Cards/pythia8_card.dat
 set xqcut 40
+set nevents 10
 done

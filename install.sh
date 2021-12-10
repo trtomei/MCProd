@@ -1,9 +1,11 @@
+#!/bin/bash +x
+
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
 Nproc=32
 
 #source setup.sh
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
+#source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
 
 #LHAPDF
 wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.4.0.tar.gz -O LHAPDF-6.4.0.tar.gz
@@ -18,11 +20,11 @@ if [[ $? -ne 0 ]]; then
 fi;
 cd ..
 
-git clone https://gitlab.cern.ch/hepmc/HepMC.git
---disable-shared
+#git clone https://gitlab.cern.ch/hepmc/HepMC.git
+#--disable-shared
 
 #Rivet dependencies
-python3 -m pip install python-dev-tools --user --upgrade
+python -m pip install python-dev-tools --user --upgrade
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing python-dev-tools"
     exit
@@ -42,14 +44,14 @@ cd ..
 #Rivet
 wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
 chmod +x rivet-bootstrap
-INSTALL_PREFIX=$prodBase ./rivet-bootstrap
+INSTALL_PREFIX=$prodBase MAKE="make -j${Nproc}" ./rivet-bootstrap
 if [[ $? -ne 0 ]]; then
     echo "ERROR installing LHAPDF"
     exit
 fi
 
 mkdir PDFs
-./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
+./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs #python ./bin/...?
 
 #MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v3.3.1.tar.gz

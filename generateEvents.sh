@@ -34,7 +34,7 @@ echo $gzs
 
 for gz in $gzs; do
     lhe=${gz%%.gz}
-    pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
+    pythiaOutput=${lhe%%.lhe}.hepmc
     delphesOutput=${lhe%%.lhe}.root  #set delphes output path/name
     gunzip $gz
 
@@ -68,7 +68,7 @@ source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10
 
 for gz in $gzs; do
     lhe=${gz%%.gz}
-    pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
+    pythiaOutput=${lhe%%.lhe}.hepmc
 
     cd `dirname $lhe`
     rivet --analysis=MC_GENERIC $pythiaOutput
