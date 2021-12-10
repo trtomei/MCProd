@@ -28,12 +28,12 @@ wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9
 tar -xzvf ghostscript-9.55.0.tar.gz
 cd ghostscript-9.55.0/
 ./configure --prefix=$prodBase
-make -j8
+make  -j$Nproc
 make install
 if [[ $? -ne 0 ]]; then
-    echo "ERROR installing ghostscript"
+    echo "ERROR installing rivet dependencies"
     exit
-fi
+fi;
 cd ..
 
 #Rivet
