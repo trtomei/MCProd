@@ -30,13 +30,15 @@ cd ..
 
 #------------------------------------------------------------------------
 
+./MG5_aMC_v3_1_1/HEPTools/bin/MG5aMC_PY8_interface
+
+#------------------------------------------------------------------------
+
 cd delphes
 for gz in $gzs; do 
     lhe=${gz%%.gz}
     pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
     delphesOutput=${lhe%%.lhe}.root  #set delphes output path/name
-    
-    
     gunzip $gz
     #n=`grep -c \<event\> $lhe`
     #echo $n
