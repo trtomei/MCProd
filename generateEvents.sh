@@ -21,30 +21,44 @@ touch .dummy
 
 #########################################################################
 
-#cd MG5_aMC_v3_3_1
 python MG5_aMC_v3_3_1/bin/mg5_aMC < "${mgScript}"
+if [[ $? -ne 0 ]]; then
+    echo "MadGraph ERROR"
+    exit
+fi
+
 gzs=`find . -newer .dummy -name "unweighted_events.lhe.gz" -exec echo $PWD/{} \;`
 echo $gzs
 
 #------------------------------------------------------------------------
 
-./MG5_aMC_v3_1_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card.dat
+for gz in $gzs; do
+    lhe=${gz%%.gz}
+    pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
+    delphesOutput=${lhe%%.lhe}.root  #set delphes output path/name
+    gunzip $gz
+
+    cd `dirname $lhe`
+    #TO DO - FIX HARDCODES
+    sed "s%N_JET_MAX%2%g" $prodBase/Cards/pythia8_card.dat > pythia8_card.dat
+    sed "s%Q_CUT%60%" --in-place pythia8_card.dat
+    $prodBase/MG5_aMC_v3_3_1/HEPTools/bin/MG5aMC_PY8_interface pythia8_card.dat
+    if [[ $? -ne 0 ]]; then
+	echo "Pythia  ERROR"
+	exit
+    fi
+    cd $prodBase
+done
 
 #------------------------------------------------------------------------
 
 cd delphes
 for gz in $gzs; do 
-    lhe=${gz%%.gz}
-    pythiaOutput=`dirname $lhe`/tag_1_pythia8_events.hepmc.gz
-    delphesOutput=${lhe%%.lhe}.root  #set delphes output path/name
-    gunzip $gz
-    #n=`grep -c \<event\> $lhe`
-    #echo $n
-    #sed s%examples/Pythia8/events.lhe%$lhe% examples/Pythia8/configLHE.cmnd > configLHE.cmnd #this will create a new config pointing to your lhe
-    ###sed "s%Main:numberOfEvents = 10%Main:numberOfEvents = $n%" --in-place configLHE.cmnd
-    #./DelphesPythia8 $delphesCard configLHE.cmnd $delphesOutput  #this runs delphes using your new config
     ./DelphesLHEF $delphesCard $delphesOutput $lhe
-
+    if [[ $? -ne 0 ]]; then
+        echo "Delphes ERROR"
+	exit
+    fi
 done
 
 #------------------------------------------------------------------------
@@ -59,4 +73,8 @@ for gz in $gzs; do
     cd `dirname $lhe`
     rivet --analysis=MC_GENERIC $pythiaOutput
     rivet-mkhtml Rivet.yoda
+    if [[ $? -ne 0 ]]; then
+        echo "Rivet ERROR"
+	exit
+    fi
 done

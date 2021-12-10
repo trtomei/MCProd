@@ -49,10 +49,10 @@ JetMatching:coneRadius = 1.0000000000e+00
 JetMatching:doVeto = off
 JetMatching:etaJetMax = 1.0000000000e+03
 JetMatching:merge = on
-!JetMatching:nJetMax = 3                   Need to set this dynamically
-!Merging:nJetMax                           Need to set this dynamically
+JetMatching:nJetMax = N_JET_MAX !placeholder to set this dynamically
+Merging:nJetMax     = N_JET_MAX !placeholder to set this dynamically
 JetMatching:nQmatch = 5
-!JetMatching:qCut = 4.5000000000e+01       Need to set this dynamically
+JetMatching:qCut = Q_CUT        !placeholder to set this dynamically
 JetMatching:scheme = 1
 JetMatching:setMad = off
 

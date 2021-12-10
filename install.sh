@@ -18,6 +18,9 @@ if [[ $? -ne 0 ]]; then
 fi;
 cd ..
 
+git clone https://gitlab.cern.ch/hepmc/HepMC.git
+--disable-shared
+
 #Rivet dependencies
 python3 -m pip install python-dev-tools --user --upgrade
 if [[ $? -ne 0 ]]; then
@@ -44,7 +47,6 @@ if [[ $? -ne 0 ]]; then
     echo "ERROR installing LHAPDF"
     exit
 fi
-cd ..
 
 mkdir PDFs
 ./bin/lhapdf install NNPDF31_nnlo_as_0118 --listdir share/LHAPDF/ --pdfdir PDFs
@@ -52,28 +54,30 @@ mkdir PDFs
 #MadGraph
 wget https://launchpad.net/mg5amcnlo/3.0/3.3.x/+download/MG5_aMC_v3.3.1.tar.gz
 tar -xzvf MG5_aMC_v3.3.1.tar.gz
-echo "install mg5amc_py8_interface" | ./MG5_aMC_v3_1_1/bin/mg5_aMC
+#echo "install hepmc" | python MG5_aMC_v3_3_1/bin/mg5_aMC
+#echo "install mg5amc_py8_interface" | python MG5_aMC_v3_3_1/bin/mg5_aMC
+echo "install pythia8" | python MG5_aMC_v3_3_1/bin/mg5_aMC
 if [[ $? -ne 0 ]]; then
     echo "ERROR getting madgraph"
     exit
 fi
 rm MG5_aMC_v3.3.1.tar.gz
 
-#Pythia
-wget https://pythia.org/download/pythia83/pythia8306.tgz
-tar -xzvf pythia8306.tgz
-cd pythia8306
-./configure --prefix=$prodBase --with-hepmc2=$prodBase --with-gzip
-make -j$Nproc
-make install
-cd examples/
-make main88
-if [[ $? -ne 0 ]]; then
-    echo "ERROR compiling pythia"
-    exit
-fi
-cd ../..
-rm pythia8306.tgz
+# #Pythia
+# wget https://pythia.org/download/pythia83/pythia8306.tgz
+# tar -xzvf pythia8306.tgz
+# cd pythia8306
+# ./configure --prefix=$prodBase --with-hepmc2=$prodBase --with-gzip
+# make -j$Nproc
+# make install
+# cd examples/
+# make main88
+# if [[ $? -ne 0 ]]; then
+#     echo "ERROR compiling pythia"
+#     exit
+# fi
+# cd ../..
+# rm pythia8306.tgz
 
 #Delphes
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib
