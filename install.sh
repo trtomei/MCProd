@@ -18,6 +18,24 @@ if [[ $? -ne 0 ]]; then
 fi;
 cd ..
 
+#Rivet dependencies
+python3 -m pip install python-dev-tools --user --upgrade
+if [[ $? -ne 0 ]]; then
+    echo "ERROR installing python-dev-tools"
+    exit
+fi
+wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/ghostscript-9.55.0.tar.gz
+tar -xzvf ghostscript-9.55.0.tar.gz
+cd ghostscript-9.55.0/
+./configure --prefix=$prodBase
+make -j8
+make install
+if [[ $? -ne 0 ]]; then
+    echo "ERROR installing ghostscript"
+    exit
+fi
+cd ..
+
 #Rivet
 wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
 chmod +x rivet-bootstrap
@@ -68,33 +86,3 @@ if [[ $? -ne 0 ]]; then
     exit
 fi
 cd ..
-
-#Rivet dependencies
-python3 -m pip install python-dev-tools --user --upgrade
-if [[ $? -ne 0 ]]; then
-    echo "ERROR installing python-dev-tools"
-    exit
-fi
-wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/ghostscript-9.55.0.tar.gz
-tar -xzvf ghostscript-9.55.0.tar.gz 
-cd ghostscript-9.55.0/
-./configure --prefix=$prodBase
-make -j8
-make install
-if [[ $? -ne 0 ]]; then
-    echo "ERROR installing ghostscript"
-    exit
-fi
-cd ..
-
-#Needed for rivet (and delphes?)
-source /cvmfs/sft.cern.ch/lcg/releases/LCG_99/ROOT/v6.22.06/x86_64-centos7-gcc10-opt/ROOT-env.sh
-
-#Rivet
-wget https://gitlab.com/hepcedar/rivetbootstrap/raw/3.1.4/rivet-bootstrap
-chmod +x rivet-bootstrap
-INSTALL_PREFIX=$prodBase MAKE="make -j8" ./rivet-bootstrap
-if [[ $? -ne 0 ]]; then
-    echo "ERROR installing rivet"
-    exit
-fi

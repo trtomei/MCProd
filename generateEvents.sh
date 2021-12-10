@@ -28,7 +28,7 @@ echo $gzs
 
 #------------------------------------------------------------------------
 
-./MG5_aMC_v3_1_1/HEPTools/bin/MG5aMC_PY8_interface
+./MG5_aMC_v3_1_1/HEPTools/bin/MG5aMC_PY8_interface $prodBase/Cards/pythia8_card.dat
 
 #------------------------------------------------------------------------
 
