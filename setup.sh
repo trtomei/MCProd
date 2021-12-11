@@ -1,8 +1,8 @@
 if [[ `basename $PWD` != "MCProd" ]]; then echo "Execute from MCProd dir"; exit; fi
 
 export prodBase=$PWD
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${prodBase}/lib
-export PATH=$PATH:$prodBase/bin
+unset PYTHONPATH
+unset PYTHONHOME
 
 if [[ $HOSTNAME == "login.snowmass21.io" ]]; then
     module purge
