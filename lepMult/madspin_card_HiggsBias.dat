@@ -20,14 +20,22 @@
  set max_weight_ps_point 400  # number of PS to estimate the maximum for each event
 
 # specify the decay for the final state particles
-set spinmode none
-set run_card ./step1/Cards/run_card.dat
-
-#define f = b b~  ta+ ta-
-#define opt_f = f _
-#decay h > f f 
-
-decay h > all all
+ set spinmode none
+ set run_card ./step1/Cards/run_card.dat
+#decay t > w+ b, w+ > all all
+#decay t~ > w- b~, w- > all all
+#decay w+ > all all
+#decay w- > all all
+#decay z > all all
+define f = b b~  ta+ ta-
+define opt_f = f _
+decay h > f f opt_f opt_f
+#decay h > z z           , z  > all all
+#decay h > w+ w-         , w+ > all all , w- > all all
+#decay h > ta+ ta-
+#decay h > b b~
+#decay h > g g
+#decay h > a a
 
 # running the actual code
 launch
