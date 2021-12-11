@@ -12,8 +12,7 @@ cp -r lepMult/lepMultBias/ MG5_aMC_v3_3_1/Template/LO/Source/BIAS/lepMult
 cd MG5_aMC_v3_3_1
 rm -rf step*
 
-python ./bin/mg5_aMC < ../lepMult/step1.mg
-python ./bin/mg5_aMC < ../lepMult/step2.mg
+python ./bin/mg5_aMC < ../lepMult/test.mg
 
 gunzip step1/Events/run_0?/unweighted_events.lhe.gz
 gunzip step2/Events/run_0?_decayed_1/unweighted_events.lhe.gz
